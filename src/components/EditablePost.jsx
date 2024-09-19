@@ -32,6 +32,12 @@ export default class EditablePost extends React.Component {
                 <input type="text" name="locationField" id="locationField" value={this.state.location} onChange={this.handleLocationChange}/>
                 <label htmlFor="contentField">Content:</label>
                 <input type="text" name="contentField" id="contentField" value={this.state.content} onChange={this.handleContentChange}/>
+
+                <button onClick={() => {
+                    this.props.updatePostData(this.state.author, this.state.location, this.state.content);
+                }}>
+                    Submit Data
+                </button>
             </div>
         );
     }

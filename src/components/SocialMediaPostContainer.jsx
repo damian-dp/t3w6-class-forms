@@ -16,6 +16,15 @@ export default class SocialMediaPostContainer extends React.Component {
 		}
 	}
 
+    updatePostData = (newAuthor, newLocation, newContent) => {
+        this.setState({
+            author: newAuthor,
+            lastUpdated: Date.now(),
+            location: newLocation,
+            content: newContent
+        });
+    }
+
     toggleEditMode = () => {
         this.setState({
             isEditing: !this.state.isEditing
@@ -27,31 +36,32 @@ export default class SocialMediaPostContainer extends React.Component {
         if (this.state.isEditing) {
             return (
                 <>
-                <button onClick={this.toggleEditMode}>
-                    Toggle Edit Mode
-                </button>
-                <EditablePost 
-                author={this.state.author} 
-                dateCreated={this.state.dateCreated} 
-                lastUpdated={this.state.lastUpdated}
-                location={this.state.location}
-                content={this.state.content}
-                />
+                    <button onClick={this.toggleEditMode}>
+                        Toggle Edit Mode
+                    </button>
+                    <EditablePost 
+                    author={this.state.author} 
+                    dateCreated={this.state.dateCreated} 
+                    lastUpdated={this.state.lastUpdated}
+                    location={this.state.location}
+                    content={this.state.content}
+                    updatePostData={this.updatePostData}
+                    />
                 </>
             );
         } else {
             return (
                 <>
-                <button onClick={this.toggleEditMode}>
-                    Toggle Edit Mode
-                </button>
-                <ReadonlyPost 
-                author={this.state.author} 
-                dateCreated={this.state.dateCreated} 
-                lastUpdated={this.state.lastUpdated}
-                location={this.state.location}
-                content={this.state.content}
-                />
+                    <button onClick={this.toggleEditMode}>
+                        Toggle Edit Mode
+                    </button>
+                    <ReadonlyPost 
+                    author={this.state.author} 
+                    dateCreated={this.state.dateCreated} 
+                    lastUpdated={this.state.lastUpdated}
+                    location={this.state.location}
+                    content={this.state.content}
+                    />
                 </>
             );
         }
